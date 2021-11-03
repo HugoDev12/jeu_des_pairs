@@ -1,49 +1,11 @@
+let compare = []; // empty array intended to get "value" of first and second click
+let firstCard, secondCard; // designed for first and second click
 
-function changeImg(path){ // change background Img of Cards
-
-let keyframes = document.createElement("style");
-
-keyframes.innerHTML = `
-    @keyframes rotate {
-        0% {
-            transform: rotateY(0deg);
-            background-image: url(../img/cards-hide.jpg);
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
-        100% {
-            transform: rotateY(180deg);
-            background-image: url(../img/${path}.jpg);
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
-    }
-    `;
-    return keyframes;
-}
-
-// #######################################################################################  //
-
-function toReveal(div, path){ // display Cards
-
-    if (div.className.includes(path)){
-        div.appendChild(changeImg(path));
-        div.classList.add("reveal");
-    }
-
-}
-// ######################################################################################   //
-
-
-window.addEventListener("load", makeCard()); // Event on loading's page                         
-
-function makeCard(){ // create Cards
+function makeCard(){ // create 12 Cards
     let main = document.querySelector("main");
     let i = 1;
 
-    while( i < 13 ){
+    while( i < 13 ){ // add classes to cards
         let div = document.createElement("div");
         div.classList.add("card", "m-2", "m-lg-3");
 
@@ -53,76 +15,82 @@ function makeCard(){ // create Cards
         i >=7 && i < 9 ? div.classList.add("demon4"):
         i >=9 && i < 11 ? div.classList.add("demon5"): div.classList.add("demon6");
 
+        // math.rdm de i pour style.order(div)
+
         i++;
         main.append(div);
     }
 }
 
 
-let demon1, demon2, demon3, demon4, demon5, demon6;
-let cardList = document.getElementsByClassName("card");
-for (let card in cardList){
-    cardList[card].addEventListener('click', (e) => {
-        e.stopPropagation();
-        toReveal(cardList[card], "demon1");
-        toReveal(cardList[card], "demon2");
-        toReveal(cardList[card], "demon3");
-        toReveal(cardList[card], "demon4");
-        toReveal(cardList[card], "demon5");
-        toReveal(cardList[card], "demon6");
-    })
+
+function toReveal(){ // reveal card on click
+    let div = this;
+    getImg(div, "demon1");
+    getImg(div, "demon2");
+    getImg(div, "demon3");
+    getImg(div, "demon4");
+    getImg(div, "demon5");
+    getImg(div, "demon6");
+
+}
+
+function getImg(div, path){ // change the card's image when revealed
+
+    if (div.className.includes(path)){
+        div.classList.add("reveal");
+        div.style.background = `url(../img/${path}.jpg)`;
+        compare.push(div);
+
+        if (compare.length === 2) { // compare the first and second card
+            firstCard = compare.shift();
+            secondCard = compare.shift();
+            console.log(firstCard, secondCard);
+            if (firstCard.className === secondCard.className){
+                match(firstCard, secondCard);
+            } else {
+                noMatch(firstCard, secondCard);
+            }
+        }
+    }
+}
+
+
+function match(firstCard, secondCard){ // if 2 cards match
+    firstCard.removeEventListener("click", toReveal);
+    secondCard.removeEventListener("click", toReveal);
+}
+
+function noMatch(firstCard, secondCard){ // if 2 cards not match, reattribute inherit style.
+    setTimeout (function(){
+        firstCard.classList.remove("reveal");
+        firstCard.style.background = "url(../img/cards-hide.jpg)";
+        firstCard.style.backgroundSize = "cover";
+        firstCard.style.backgroundPosition = "center center";
+        firstCard.style.backgroundRepeat = "no-repeat";
+        secondCard.classList.remove("reveal");
+        secondCard.style.background = "url(../img/cards-hide.jpg)";
+        secondCard.style.backgroundSize = "cover";
+        secondCard.style.backgroundPosition = "center center";
+        secondCard.style.backgroundRepeat = "no-repeat";
+    }, 2000)
 }
 
 
 
 
 
-        // i < 3 ? changeImg("demon1") :
-        // i >=3 && i < 5 ? changeImg("demon2") :
-        // i >=5 && i < 7 ? changeImg("demon3") :
-        // i >=7 && i < 9 ? changeImg("demon4") :
-        // i >=9 && i < 11 ? changeImg("demon5") : changeImg("demon6");
-
-        // i < 3 ? document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon1")  :
-        // i >=3 && i < 5 ? document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon2") :
-        // i >=5 && i < 7 ? document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon3") :
-        // i >=7 && i < 9 ? document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon4") :
-        // i >=9 && i < 11 ? document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon5") : document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon6");
-
-                // cardList[card].classList.add("reveal");
-
-        // console.log(cardList[card]);
-        // cardList[card].className.includes("demon1") ? cardList[card].appendChild(changeImg("demon1")) :
-        // cardList[card].className.includes("demon2") ? cardList[card].appendChild(changeImg("demon2")) : cardList[card].appendChild(changeImg("demon3"));
-        // cardList[card].classList.add("reveal");
-
-        // if (cardList[card].className.includes("demon1")) {
-        //     cardList[card].appendChild(changeImg("demon1"));
-        //     cardList[card].classList.add("reveal");
-        // }
-        // else if (cardList[card].className.includes("demon2")) {
-        //     cardList[card].appendChild(changeImg("demon2"));
-        //     cardList[card].classList.add("reveal");
-        // }
-        // else if (cardList[card].className.includes("demon3")) {
-        //     cardList[card].appendChild(changeImg("demon3"));
-        //     cardList[card].classList.add("reveal");
-        // }
-        // else if (cardList[card].className.includes("demon4")) {
-        //     cardList[card].appendChild(changeImg("demon4"));
-        //     cardList[card].classList.add("reveal");
-        // }
-        // else if (cardList[card].className.includes("demon5")) {
-        //     cardList[card].appendChild(changeImg("demon5"));
-            // cardList[card].classList.add("reveal");
-        // }
-        // else {
-            
-        // }
-
-        
-
-// console.log(document.styleSheets[3].cssRules[4][1].cssText.replace(/cards-hide/g, "demon1"));
+window.addEventListener("load", makeCard()); // Event on loading's page                         
 
 
-// .cssText
+
+let cards = document.getElementsByClassName("card");
+
+for (let card of cards){
+    card.addEventListener("click", toReveal); 
+
+}
+
+
+
+
