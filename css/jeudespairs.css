@@ -1,0 +1,59 @@
+
+body>header{
+    background-color: blue;
+    height: 30vh;
+}
+
+body>main {
+    width: 100vw;
+}
+
+.card {
+    height: 18vh;
+    width: 5em;
+    background-image: url(../img/cards-hide.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+.reveal {
+    animation: rotate 1s linear 0s 1 normal;
+    animation-fill-mode: both;
+}
+
+/* @keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+        background-image: url(../img/cards-hide.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    100% {
+        transform: rotateY(180deg);
+        background-image: url(../img/cards-hide.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+} */
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width: 768px){
+    .card {
+        height: 25vh;
+        width: 15vw;
+    }
+    
+}
+
+@media screen and (min-width: 992px){
+    .card {
+        height: 27vh;
+        width: 10vw;
+    }
+}
