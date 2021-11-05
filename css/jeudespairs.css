@@ -4,9 +4,39 @@ body>header{
     height: 30vh;
 }
 
+h1 {
+    margin-top: 3rem;
+}
+
 body>main {
     width: 100vw;
 }
+
+/* ################################################################################################## */
+
+#onload {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(184, 175, 175, 0.4);
+    z-index: 1001;
+    position: fixed;
+    top: 0;
+}
+
+#rules {
+    background-color:white;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+#timer {
+    position: absolute;
+    top : 27vh;
+    right: 2em;
+}
+
+
+/* ################################################################################################### */
 
 .card {
     height: 18vh;
@@ -19,7 +49,7 @@ body>main {
 
 
 .reveal {
-    animation: rotate 1s linear 0s 1 normal;
+    animation: rotate 750ms linear 0s 1 normal;
     animation-fill-mode: both;
 }
 
