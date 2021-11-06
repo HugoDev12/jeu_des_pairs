@@ -34,7 +34,7 @@ function startGame(layer){
 // #########################################################    Adding a timer to the game / win and loss conditions  ######################################################  //  
 
 function countdown() {
-    timer.innerHTML = "Temps restant: "+ timeLeft + "s";
+    timer.innerHTML = timeLeft + "s";
     if (timeLeft === 0){
         reStart("Temps écoulé ! vous avez perdu");
     } else timeLeft--;
@@ -48,7 +48,7 @@ function makeCard(){
 
     while( i < 13 ){ // add classes to cards
         let div = document.createElement("div");
-        div.classList.add("card", "m-2", "m-lg-3");
+        div.classList.add("card", "m-3");
 
         div.setAttribute("data-id", i); // set data-id attribute to verify if user won't click on the same card twice
 
