@@ -37,6 +37,11 @@ figure {
 }
 /* #####################################################       Layer        ####################################################### */
 
+@font-face {
+  font-family: 'Gothical';
+  src: url("../fonts/gothical\Gothical.ttf") format('truetype');
+}
+
 #onload {
   height: 100vh;
   width: 100vw;
@@ -50,6 +55,7 @@ figure {
   background-color: inherit;
   font-size: 200%;
   color: rgb(84, 174, 201);
+  font-family: 'Gothical';
 }
 
 #left-side,#right-side {
@@ -70,6 +76,7 @@ section {
 
 section>h1 {
   margin-bottom: 8em;
+  font-family: 'Gothical';
 }
 
 #left-demon,#right-demon {
