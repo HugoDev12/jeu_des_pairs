@@ -38,18 +38,56 @@ figure {
 /* #####################################################       Layer        ####################################################### */
 
 #onload {
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(184, 175, 175, 0.4);
-    z-index: 1001;
-    position: fixed;
-    top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../img/cimetiere.jpg);
+  z-index: 1002;
+  position: fixed;
+  top: 0;
+}
+#start {
+  border: none;
+  background-color: inherit;
+  font-size: 200%;
+  color: rgb(84, 174, 201);
 }
 
-#rules {
-    background-color:white;
-    padding: 1rem;
-    margin: 1rem;
+#left-side,#right-side {
+  position: fixed;
+  z-index: 1001;
+  width: 40%;
+}
+
+#right-side {
+  display: none;
+}
+
+section {
+  height: 100%;
+  color: rgb(84, 174, 201);
+  overflow: hidden;
+}
+
+section>h1 {
+  margin-bottom: 8em;
+}
+
+#left-demon,#right-demon {
+  opacity: 0.6;
+}
+
+.drop {
+  animation: down 1s linear 0s 1 normal;
+  animation-fill-mode: both;
+}
+
+@keyframes down {
+  0% {
+      height: 100vh;
+  }
+  100% {
+      height: 0vh;
+  }
 }
 
 /* ######################################################   Cards/Animation   ############################################### */
@@ -62,6 +100,7 @@ figure {
   background-position: center center;
   background-repeat: no-repeat;
 }
+
 
 .reveal {
     animation: rotate 750ms linear 0s 1 normal;
@@ -161,6 +200,18 @@ figure {
   .card {
     margin: 2rem!important;
   }
+  #right-side {
+    display: inherit;
+  } 
+  #left-demon {
+      height: 100vh;
+  }
+  #right-demon {
+      height: 100vh;
+  }
+  #start {
+      font-size: 300%;
+  }
 }
 
 @media screen and (min-width: 1440px){
@@ -170,5 +221,8 @@ figure {
   .card {
     height: 18rem;
     width: 9rem;
+  }
+  section>h1 {
+    margin-bottom: inherit;
   }
 }

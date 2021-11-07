@@ -6,24 +6,37 @@ let timer = document.getElementById('timer');
 let delay; // countdown timer
 
 
-
 // #############################################################    Functions   ########################################### //
 
 // ##########################################################   Create a layer   ##########################################  //
 
 function startGame(layer){
     layer.setAttribute("id", "onload");
-    layer.classList.add("d-flex", "align-items-center", "justify-content-center");
+    layer.classList.add("layerItems");
     layer.innerHTML = 
-    `
-        <section class="d-flex flex-column" id="rules">
-        <p class="text-center">Bienvenue au Jeu des paires, vous avez ${timeLeft} secondes pour finir le jeu</p>
-        <button class="btn btn-primary align-self-center" id="start">Jouer</button>
-        </section>
-    `;
+    `<figure id="left-side"><img src="img/layer-img1.jpg" alt="demon" id="left-demon" class="layerItems"></figure>
+    <figure id="right-side"><img src="img/layer-img2.jpg" alt="demon" id="right-demon" class="layerItems"></figure>  
+    <section class="d-flex flex-column align-items-center justify-content-center">
+    <h1 id="title">jeu des paires</h1>
+    <div style="height: 55%;"></div>
+    <button id="start">Jouer</button>
+    </section>`;
+
     document.body.appendChild(layer);
 
+    // #############################################    Layer's images position     ##################################  //
+    let leftImg = document.getElementById("left-side");
+    leftImg.style.left = `${((window.innerWidth - (leftImg.clientWidth)*2.90)/2)}px`;
+    let rightImg = document.getElementById("right-side"); 
+    rightImg.style.right = `${((window.innerWidth - (leftImg.clientWidth)*2.75)/2)}px`;
+
+
+
     document.getElementById("start").addEventListener("click", function(){ // ######################"start game on button's click"############################ //
+        // let layerItems = document.getElementsByClassName("layerItems");
+        // for(let item of layerItems){
+        //     item.classList.add("drop");
+        // }
         document.querySelector("body").removeChild(layer);
         delay = setInterval(countdown, 1000);
             makeCard();
@@ -42,7 +55,7 @@ function countdown() {
 
 // #############################################################    Create 12 cards     ####################################################### //
 
-function makeCard(){ 
+function makeCard(){
     let main = document.querySelector("main");
     let i = 1;
 
@@ -63,8 +76,6 @@ function makeCard(){
 
         i++;
         main.append(div);
-
-        
     }
 }
 
@@ -142,9 +153,13 @@ function noMatch(firstCard, secondCard){ // if 2 cards not match, reattribute or
 // ############################################################  Restart the game  ############################################### //
 
 function reStart(text){
-    layer.firstElementChild.firstElementChild.textContent = text;
-    layer.firstElementChild.lastElementChild.textContent = "Rejouer?";
+    layer.children[2].firstElementChild.textContent = text;
+    layer.lastElementChild.lastElementChild.textContent = "Rejouer?";
     document.body.appendChild(layer);
+    // let layerItems = document.getElementsByClassName("layerItems");
+    // for(let item of layerItems){
+    //     item.classList.remove("drop");
+    // }
     clearInterval(delay);
     document.getElementById("start").addEventListener("click", function(){ // ###################"start game on button's click"############################ //
         document.querySelector("main").innerHTML = "";
