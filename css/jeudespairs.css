@@ -111,10 +111,10 @@ section>h1 {
 @keyframes rotate {
     0% {
         transform: rotateY(0deg);
-        background-image: url(../img/cards-hide.jpg);
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
+          background-image: url(../img/cards-hide.jpg);
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
     }
     100% {
         transform: rotateY(180deg);
@@ -122,6 +122,27 @@ section>h1 {
         background-position: center center;
         background-repeat: no-repeat;
     }
+}
+
+.hide {
+  animation: rotateBack 500ms linear 0s 1 normal;
+  animation-fill-mode: both;
+}
+
+@keyframes rotateBack {
+  0% {
+    transform: rotateY(0deg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+  }
+  100% {
+      transform: rotateY(-180deg);
+      background-image: url(../img/cards-hide.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+  }
 }
 
 

@@ -112,6 +112,7 @@ function playGame(){ // loading cards
 function getImg(div, path){ // change the card's image when revealed
 
     if (div.className.includes(path)){
+        div.classList.remove("hide");
         div.classList.add("reveal");
         div.style.background = `url(../img/${path}.jpg)`;
         compare.push(div);
@@ -141,11 +142,7 @@ function noMatch(firstCard, secondCard){ // if 2 cards not match, reattribute or
         let array = [firstCard, secondCard];
         array.forEach((div) => {
             div.classList.remove("reveal");
-            div.classList.add("card");
-            div.style.background = "url(../img/cards-hide.jpg)";
-            div.style.backgroundSize = "cover";
-            div.style.backgroundPosition = "center center";
-            div.style.backgroundRepeat = "no-repeat";
+            div.classList.add("hide");
         })
     }, 1500)
 }
