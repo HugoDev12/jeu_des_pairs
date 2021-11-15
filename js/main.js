@@ -32,7 +32,7 @@ function startGame(layer){
 
 
 
-    document.getElementById("start").addEventListener("click", function(){ // ######################"start game on button's click"############################ //
+    document.getElementById("start").addEventListener("click", function(){ // ###################### start game on button's click ############################ //
         // let layerItems = document.getElementsByClassName("layerItems");
         // for(let item of layerItems){
         //     item.classList.add("drop");
@@ -82,7 +82,7 @@ function makeCard(){
 // ###########################################################     Reveal card on click    ##################################################  //
 
 function toReveal(){ // reveal card on click
-    let i = 1
+    let i = 1;
     let div = this;
     while (i < 7){
         getImg(div, "demon"+i);
